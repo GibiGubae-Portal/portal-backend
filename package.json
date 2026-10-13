@@ -1,31 +1,44 @@
 {
   "name": "gbi_backend",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "server": "nodemon server.js",
-    "start": "node server.js",
-    "build": "prisma generate"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "version": "2.0.0",
+  "private": true,
+  "description": "REST API for the 6 Kilo Gibi Gubae registration system",
   "type": "module",
-  "description": "",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "server": "nodemon src/server.js",
+    "build": "prisma generate",
+    "postinstall": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:seed": "node scripts/seed.js",
+    "test": "vitest run",
+    "test:unit": "vitest run --project unit",
+    "test:integration": "vitest run --project integration",
+    "test:watch": "vitest"
+  },
+  "license": "ISC",
   "dependencies": {
     "@prisma/adapter-pg": "^7.1.0",
     "@prisma/client": "^7.1.0",
-    "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.6.1",
     "express": "^5.1.0",
     "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
     "joi": "^17.13.3",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3",
+    "prisma": "^7.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10",
-    "prisma": "^7.1.0"
+    "supertest": "^7.1.4",
+    "vitest": "^3.2.4"
   }
 }

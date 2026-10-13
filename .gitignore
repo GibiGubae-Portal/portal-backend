@@ -1,4 +1,12 @@
-.env
 node_modules/
-prisma/prisma/
-/generated/prisma
+.env
+.env.*
+!.env.example
+prisma/generated/
+.vercel/
+coverage/
+*.log
+
+# Database exports contain personal data - never commit
+exported/
+*.csv

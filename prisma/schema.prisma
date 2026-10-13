@@ -3,10 +3,10 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"   
-  output   = "./generated/client"
-  engineType  = "client"
-  moduleFormat = "esm"  
+  provider     = "prisma-client-js"
+  output       = "./generated/client"
+  engineType   = "client"
+  moduleFormat = "esm"
 }
 
 enum activity_type{
@@ -114,7 +114,7 @@ model User {
   baptismalname        String           @default("None") @db.VarChar(50)
   phone                String           @unique @db.VarChar(20)
   birthdate            DateTime         @db.Date
-  useremail            String?          @unique @default("not_specified") @db.VarChar(320)
+  useremail            String?          @unique @db.VarChar(320)
   nationality          String           @db.VarChar(50)
   isphysicallydisabled disability_type  @default(None)
   zonename             String           @default("not_specified") @db.VarChar(50)
@@ -124,6 +124,9 @@ model User {
   clergicalstatus      clerical_status  @default(None)
   telegram_username    String            @default("not_specified") @db.VarChar(50)
   universityusers      universityusers?
+
+  @@index([createdBy])
+  @@index([createdAt])
 }
 
 model admin {
@@ -171,5 +174,7 @@ model universityusers {
   tookcourse       Boolean?           @default(false)
   activitylevel    activity_type           @default(Active)
   User             User               @relation(fields: [userid], references: [userid], onUpdate:Cascade, onDelete: Cascade)
+
+  @@index([batch])
 }
 
